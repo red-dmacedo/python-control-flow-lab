@@ -239,7 +239,7 @@ def determine_season():
         if (month in season['full_months']) or \
                 (month == season['start']['month'] and day >= season['start']['day']) or \
                 (month == season['end']['month'] and day <= season['end']['day']):
-            print(f"{season['name']}")
+            print(f"{month} {day} is in {season['name']}")
 
         # Call the function
 determine_season()
