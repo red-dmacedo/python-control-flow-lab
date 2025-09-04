@@ -121,7 +121,7 @@ calculate_dog_years()
 # Hints:
 # - Use logical operators (`AND`, `OR`, `NOT`) in your if statements to handle multiple conditions.
 
-
+'''
 def weather_advice():
     # Your control flow logic goes here
     def convert_yes_no(s):
@@ -146,7 +146,7 @@ def weather_advice():
 
 # Call the function
 weather_advice()
-
+'''
 
 # Exercise 5: What's the Season?
 #
@@ -168,7 +168,83 @@ weather_advice()
 # - Ensure to validate input formats and handle unexpected inputs gracefully.
 
 def determine_season():
-  # Your control flow logic goes here
+    # Your control flow logic goes here
+    month_list = [
+        "jan", "feb", "mar", "apr", "may", "jun",
+        "jul", "aug", "sep", "oct", "nov", "dec"
+    ]
 
-# Call the function
+    # additional check for maximum day of a month could be added, but was omitted
+    seasons = [
+        {
+            "name": "winter",
+            "start": {
+                "month": month_list[-1],
+                "day": 21,
+            },
+            "full_months": month_list[0:2],
+            "end": {
+                "month": month_list[2],
+                "day": 19
+            }
+        },
+
+        {
+            "name": "spring",
+            "start": {
+                "month": month_list[2],
+                "day": 20,
+            },
+            "full_months": month_list[3:5],
+            "end": {
+                "month": month_list[5],
+                "day": 20
+            }
+        },
+
+        {
+            "name": "Summer",
+            "start": {
+                "month": month_list[5],
+                "day": 21,
+            },
+            "full_months": month_list[6:8],
+            "end": {
+                "month": month_list[8],
+                "day": 21
+            }
+        },
+
+        {
+            "name": "Fall",
+            "start": {
+                "month": month_list[8],
+                "day": 22,
+            },
+            "full_months": month_list[9:11],
+            "end": {
+                "month": month_list[11],
+                "day": 20
+            }
+        },
+    ]
+    month = (input("Enter the month of the year (Jan - Dec): ")).lower()
+    if not month in month_list:
+        raise Exception("Input must be the first 3 letters of a month")
+    try:
+        day = int(input("Enter the day of the month: "))
+        if day < 1:
+            raise Exception("Invalid input: day cannot be 0 or negative")
+        if day > 33:
+            raise Exception("Invalid input: day cannot be larger than 32")
+    except Exception as e:
+        print(e)
+        return
+    for season in seasons:
+        if (month in season['full_months']) or \
+                (month == season['start']['month'] and day >= season['start']['day']) or \
+                (month == season['end']['month'] and day <= season['end']['day']):
+            print(f"{season['name']}")
+
+        # Call the function
 determine_season()
